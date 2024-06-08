@@ -12,18 +12,18 @@ import MathWizFooter from "@/components/MathWizFooter.vue";
     <div
         class="row g-3"
     >
-      <div class="col-12">
+      <div class="col-12 text-center">
         <h2 class="text-uppercase">
           <b>
             MathWiz
           </b>
         </h2>
       </div>
-      <div class="col-12">
+      <div class="col-12 text-center">
         A small parser for calculating math, logic and other types of expressions based on input.
       </div>
 
-      <div class="col-12 mt-4">
+      <div class="col-12 text-center mt-5">
         <h4 class="text-uppercase">
           <b>
             Repositories
