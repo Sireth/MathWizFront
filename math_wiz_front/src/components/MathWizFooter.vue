@@ -1,4 +1,11 @@
 <template>
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-12 mb-5">
+        <div style="height: 200px;"></div>
+      </div>
+    </div>
+  </div>
   <footer class="footer">
     <div class="waves">
       <div class="wave" id="wave1"></div>
@@ -10,19 +17,23 @@
       <li class="social-icon__item"><a class="social-icon__link" href="https://github.com/Sireth">
         <ion-icon name="logo-github"></ion-icon>
       </a></li>
-<!--      <li class="social-icon__item"><a class="social-icon__link" href="#">-->
-<!--        <ion-icon name="logo-twitter"></ion-icon>-->
-<!--      </a></li>-->
-<!--      <li class="social-icon__item"><a class="social-icon__link" href="#">-->
-<!--        <ion-icon name="logo-linkedin"></ion-icon>-->
-<!--      </a></li>-->
-<!--      <li class="social-icon__item"><a class="social-icon__link" href="#">-->
-<!--        <ion-icon name="logo-instagram"></ion-icon>-->
-<!--      </a></li>-->
+      <!--      <li class="social-icon__item"><a class="social-icon__link" href="#">-->
+      <!--        <ion-icon name="logo-twitter"></ion-icon>-->
+      <!--      </a></li>-->
+      <!--      <li class="social-icon__item"><a class="social-icon__link" href="#">-->
+      <!--        <ion-icon name="logo-linkedin"></ion-icon>-->
+      <!--      </a></li>-->
+      <!--      <li class="social-icon__item"><a class="social-icon__link" href="#">-->
+      <!--        <ion-icon name="logo-instagram"></ion-icon>-->
+      <!--      </a></li>-->
     </ul>
     <ul class="menu">
-      <li class="menu__item"><RouterLink class="menu__link" to="/" href="/">Home</RouterLink></li>
-      <li class="menu__item"><RouterLink class="menu__link" to="/about/" href="/about/">About</RouterLink></li>
+      <li class="menu__item">
+        <RouterLink class="menu__link" to="/" href="/">Home</RouterLink>
+      </li>
+      <li class="menu__item">
+        <RouterLink class="menu__link" to="/about/" href="/about/">About</RouterLink>
+      </li>
     </ul>
     <p>&copy;2024 Sireth | All Rights Reserved</p>
   </footer>

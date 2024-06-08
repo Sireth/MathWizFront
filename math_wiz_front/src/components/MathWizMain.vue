@@ -168,9 +168,7 @@ const elevate = async () => {
         </div>
       </div>
 
-      <div class="col-12 mb-5">
-        <div style="height: 200px;"></div>
-      </div>
+
 
     </div>
 
