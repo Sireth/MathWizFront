@@ -1,5 +1,5 @@
 <script setup>
-import {computed} from "vue";
+import {computed, watch} from "vue";
 
 
 const variable = defineModel({
@@ -8,6 +8,7 @@ const variable = defineModel({
     name: '',
     type: '',
     val: '',
+    valid: false,
   },
   required: true
 })
@@ -56,6 +57,15 @@ const valueType = computed(() => {
       return "text";
   }
 })
+
+const validate = () => {
+  variable.value.valid = isNameValid.value && isValueValid.value;
+};
+
+// Наблюдение за изменениями переменных, которые влияют на валидность
+watch([isNameValid, isValueValid], () => {
+  validate();
+});
 
 const remove = () => {
   emit('remove', variable);

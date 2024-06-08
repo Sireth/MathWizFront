@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue';
+import {ref, watch} from 'vue';
 import MathWizVariableList from "@/components/MathWizVariableList.vue";
 
 const expression = ref('');
@@ -9,11 +9,11 @@ const variables = ref([
     name: "",
     type: "",
     val: "",
+    valid: false,
   }
 ]);
 
 const removeVariable = (event) => {
-  // console.log(event)
   variables.value = variables.value.filter((v) => v.id !== event.id);
 }
 
@@ -23,12 +23,34 @@ const addVariable = () => {
     name: "",
     type: "",
     val: "",
+    valid: false,
   });
 }
 
 const resultString = ref('');
 
 const elevating = ref(false);
+
+const valid = ref(false);
+
+watch([variables, expression], () => {
+  if(expression.value === ''){
+    valid.value = false;
+    return;
+  }
+  for (let i = 0; i < variables.value.length; i++) {
+    if(!variables.value[i].valid){
+      valid.value = false;
+      return;
+    }
+  }
+  valid.value = true;
+}, { deep: true });
+
+
+const getResult = () => {
+
+}
 
 </script>
 

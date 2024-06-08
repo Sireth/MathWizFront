@@ -26,7 +26,6 @@
       <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
       <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
       <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
-
     </ul>
     <p>&copy;2024 Sireth | All Rights Reserved</p>
   </footer>
