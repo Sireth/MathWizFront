@@ -1,14 +1,27 @@
 <script setup>
 
+
+import MathWizFooter from "@/components/MathWizFooter.vue";
+import MathWizHeader from "@/components/MathWizHeader.vue";
+import MathWizMain from "@/components/MathWizMain.vue";
 </script>
 
 <template>
-  <div class="container py-4 px-3 mx-auto">
-    <h1>Hello, Bootstrap and Vite!</h1>
-    <button class="btn btn-primary">Primary button</button>
+  <div id="app">
+    <MathWizHeader />
+
+    <MathWizMain />
+
+    <MathWizFooter />
   </div>
 </template>
 
 <style scoped>
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 
 </style>
