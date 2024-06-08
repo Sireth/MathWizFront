@@ -1,6 +1,7 @@
 <script setup>
 import {ref, watch} from 'vue';
 import MathWizVariableList from "@/components/MathWizVariableList.vue";
+import apiClient from "@/plugins/axios/index.js";
 
 const expression = ref('');
 const variables = ref([
@@ -27,30 +28,76 @@ const addVariable = () => {
   });
 }
 
-const resultString = ref('');
+const result = ref({
+  type: '',
+  result: ''
+});
 
 const elevating = ref(false);
 
 const valid = ref(false);
 
 watch([variables, expression], () => {
-  if(expression.value === ''){
+  if (expression.value === '') {
     valid.value = false;
     return;
   }
   for (let i = 0; i < variables.value.length; i++) {
-    if(!variables.value[i].valid){
+    if (!variables.value[i].valid) {
       valid.value = false;
       return;
     }
   }
   valid.value = true;
-}, { deep: true });
+}, {deep: true});
 
+const requestGeneration = () => {
+  const newList = variables.value.map(item => {
+    const { id, valid, type, val, ...rest } = item;
+    let value = val;
 
-const getResult = () => {
+    // Преобразование значения value в зависимости от типа
+    if (type === 'number') {
+      value = parseFloat(value);
+    } else if (type === 'boolean') {
+      value = value === 'true';
+    }
 
+    return { ...rest, value, type};
+  });
+
+  return {variables: newList, expression: expression.value};
 }
+const elevate = async () => {
+  elevating.value = true;
+
+  result.value = {
+    type: '',
+    result: ''
+  };
+
+  let data = requestGeneration();
+  try {
+    const response = await apiClient.post("", JSON.stringify(data));
+    result.value = response.data;
+  } catch (error) {
+    if (error.response) {
+      if(error.response.data.hasOwnProperty('type') && error.response.data.type === "error"){
+        console.log(error.response.data.value);
+        result.value = error.response.data;
+      }
+      else {
+        result.value.result = error.code + ": " + error.message + JSON.stringify(error.response.data, null, 2);
+      }
+    } else {
+      result.value.result = error.message;
+      console.log('Error', error.message);
+    }
+    result.value.type = 'error';
+  }
+  elevating.value = false;
+}
+
 
 </script>
 
@@ -84,7 +131,9 @@ const getResult = () => {
 
       <div class="col-md-12 d-flex justify-content-center">
         <button
+            :disabled="!valid"
             class="btn btn-outline-primary"
+            @click="elevate"
         >
           Evaluate Expression
         </button>
@@ -92,21 +141,25 @@ const getResult = () => {
 
       <div class="container">
         <div class="row mt-5 d-flex justify-content-center align-items-center">
-          <div class="col-5">
-            <div class="card text-center">
+          <div class="col-auto">
+            <div
+                class="card text-center"
+                :class="{'card-body text-danger': result.type==='error', 'card-body text-success': result.type!=='error' && result.type!==''}"
+            >
               <div class="card-body">
                 <h5 class="card-title">
-                  <span class="col-6"><b>Result</b></span>
+                  <span v-if="result.type==='error'" class="col-6"><b>Error</b></span>
+                  <span v-else class="col-6"><b>Result</b></span>
                 </h5>
                 <p
                     class="card-text"
                     :class="{'placeholder-glow': elevating}"
                 >
                   <span v-if="elevating" class="placeholder col-7"></span>
-                  <span v-else-if="resultString === ''" class="col-7">
+                  <span v-else-if="result.result === ''" class="col-7">
                     Click on the <span class="bg-secondary-subtle rounded-2">Calculate Expression</span> button
                   </span>
-                  <span v-else class="col-7">{{ resultString }}</span>
+                  <span v-else class="col-7">{{ result.result }}</span>
 
                 </p>
               </div>
