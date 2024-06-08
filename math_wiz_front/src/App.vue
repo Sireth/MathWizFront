@@ -1,18 +1,12 @@
 <script setup>
 
-
-import MathWizFooter from "@/components/MathWizFooter.vue";
-import MathWizHeader from "@/components/MathWizHeader.vue";
-import MathWizMain from "@/components/MathWizMain.vue";
 </script>
 
 <template>
   <div id="app">
-    <MathWizHeader />
+    <router-view>
 
-    <MathWizMain />
-
-    <MathWizFooter />
+    </router-view>
   </div>
 </template>
 

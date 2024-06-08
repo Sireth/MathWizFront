@@ -146,7 +146,7 @@ const elevate = async () => {
                 class="card text-center"
                 :class="{'card-body text-danger': result.type==='error', 'card-body text-success': result.type!=='error' && result.type!==''}"
             >
-              <div class="card-body">
+              <div class="card-body m-4">
                 <h5 class="card-title">
                   <span v-if="result.type==='error'" class="col-6"><b>Error</b></span>
                   <span v-else class="col-6"><b>Result</b></span>

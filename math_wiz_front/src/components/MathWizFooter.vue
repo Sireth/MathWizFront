@@ -7,25 +7,22 @@
       <div class="wave" id="wave4"></div>
     </div>
     <ul class="social-icon">
-      <li class="social-icon__item"><a class="social-icon__link" href="#">
-        <ion-icon name="logo-facebook"></ion-icon>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://github.com/Sireth">
+        <ion-icon name="logo-github"></ion-icon>
       </a></li>
-      <li class="social-icon__item"><a class="social-icon__link" href="#">
-        <ion-icon name="logo-twitter"></ion-icon>
-      </a></li>
-      <li class="social-icon__item"><a class="social-icon__link" href="#">
-        <ion-icon name="logo-linkedin"></ion-icon>
-      </a></li>
-      <li class="social-icon__item"><a class="social-icon__link" href="#">
-        <ion-icon name="logo-instagram"></ion-icon>
-      </a></li>
+<!--      <li class="social-icon__item"><a class="social-icon__link" href="#">-->
+<!--        <ion-icon name="logo-twitter"></ion-icon>-->
+<!--      </a></li>-->
+<!--      <li class="social-icon__item"><a class="social-icon__link" href="#">-->
+<!--        <ion-icon name="logo-linkedin"></ion-icon>-->
+<!--      </a></li>-->
+<!--      <li class="social-icon__item"><a class="social-icon__link" href="#">-->
+<!--        <ion-icon name="logo-instagram"></ion-icon>-->
+<!--      </a></li>-->
     </ul>
     <ul class="menu">
-      <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">About</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+      <li class="menu__item"><RouterLink class="menu__link" to="/" href="/">Home</RouterLink></li>
+      <li class="menu__item"><RouterLink class="menu__link" to="/about/" href="/about/">About</RouterLink></li>
     </ul>
     <p>&copy;2024 Sireth | All Rights Reserved</p>
   </footer>
@@ -35,15 +32,10 @@
 import {onMounted} from "vue";
 
 onMounted(() => {
-  const script1 = document.createElement('script');
-  script1.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js';
-  script1.async = true;
-  document.head.appendChild(script1);
-
-  const script2 = document.createElement('script');
-  script2.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js';
-  script2.async = true;
-  document.head.appendChild(script2);
+  const script = document.createElement('script');
+  script.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js';
+  script.async = true;
+  document.head.appendChild(script);
 })
 
 </script>
