@@ -95,6 +95,9 @@ const elevate = async () => {
     }
     result.value.type = 'error';
   }
+  if(result.value.result === ''){
+    result.value.result = 'null'
+  }
   elevating.value = false;
 }
 
