@@ -1,0 +1,13 @@
+FROM node:22 as build-stage
+
+WORKDIR /math_wiz_front
+
+# Копируем package.json и package-lock.json в рабочую директорию
+COPY math_wiz_front/package*.json ./
+
+# Устанавливаем зависимости
+RUN npm install
+
+COPY math_wiz_front .
+
+RUN npm run build
