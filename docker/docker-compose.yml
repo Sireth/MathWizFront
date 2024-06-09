@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  math_wiz_front:
+    image: sireth/math_wiz_front:latest
+    container_name: math_wiz_front
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - /math_wiz_front/node_modules
+      - ../math_wiz_front:/math_wiz_front
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
